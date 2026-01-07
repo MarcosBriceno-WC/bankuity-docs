@@ -1,0 +1,77 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Bankuity Docs",
+  "colors": {
+    "primary": "#264EDC",
+    "light": "#42DFDC",
+    "dark": "#264EDC"
+  },
+  "favicon": "/bankuity-favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Home",
+        "icon": "house",
+        "pages": [
+              "index"
+            ] 
+      },
+      {
+        "tab": "Guides",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "guides/overview",
+              "guides/authentication"
+             
+            ]
+          }    
+        ]
+      },
+      {
+        "tab": "API reference",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "API documentation",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Endpoint examples",
+            "openapi": "openapi.json"
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/bankuity-logo.svg",
+    "dark": "/logo/bankuity-logo.svg"
+  },
+  "navbar": {
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/mintlify",
+      "github": "https://github.com/mintlify",
+      "linkedin": "https://linkedin.com/company/mintlify"
+    }
+  }
+}

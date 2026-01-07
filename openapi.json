@@ -1,0 +1,4505 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Bankuity API Service (3.2025.11.1401)",
+      "description": "<style>h1, h2 {color: #2c3e50;border-bottom: 2px solid #eee;padding-bottom: 10px;}.description {background-color: #f8f9fa;padding: 20px;border-radius: 5px;margin: 20px 0;}.features {display: grid;grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));gap: 24px;margin: 32px 0;}.feature-card {background: white;padding: 28px;border-radius: 16px;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);transition: transform 0.2s ease, box-shadow 0.2s ease;border: 1px solid #f0f0f0;display: flex;flex-direction: column;gap: 16px;}.feature-card:hover {transform: translateY(-2px);box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);}.feature-icon {width: 48px;height: 48px;background: #f8f9fa;border-radius: 12px;display: flex;align-items: center;justify-content: center;margin-bottom: 8px;}.feature-card h3 {margin: 0;font-size: 1.25rem;color: #2c3e50;font-weight: 600;}.feature-card p {margin: 0;color: #64748b;font-size: 0.95rem;line-height: 1.7;}.feature-meta {margin-top: auto;font-size: 0.875rem;color: #94a3b8;}.note {background-color: #e7f3fe;border-left: 4px solid #2196F3;padding: 15px;margin: 20px 0;}code {background: #f5f5f5;padding: 2px 5px;border-radius: 3px;font-family: monospace;}.auth-table {width: 100%;border-collapse: collapse;margin: 20px 0;background: white;border-radius: 10px;overflow: hidden;box-shadow: 0 2px 4px rgba(0,0,0,0.1);}.auth-table td, .auth-table th {padding: 12px 15px;text-align: left;}.auth-table tr {border-bottom: 1px solid #eee;}.auth-table tr:last-child {border-bottom: none;}</style><h1>Bankuity API</h1><div class=\"description\"><p>The Bankuity API provides comprehensive financial analysis capabilities through a RESTful interface. This API enables developers to access sophisticated income analysis, loan assessment, and financial risk evaluation services based on bank statement data.</p></div><h2>Key Capabilities</h2><div class=\"features\"><div class=\"feature-card\"><h3>Income Analysis</h3><p>Advanced financial pattern detection that identifies and verifies income sources, evaluates stability, and provides detailed transaction insights. Our machine learning models ensure accurate categorization across multiple income streams.</p><div class=\"feature-meta\"> Powered by ML-based transaction analysis</div></div><div class=\"feature-card\"><h3>Risk Assessment</h3><p>Comprehensive risk evaluation using advanced behavioral analytics and predictive modeling. Get deep insights into repayment probability and risk factors through our sophisticated ML algorithms.</p><div class=\"feature-meta\"> Real-time risk scoring engine</div></div><div class=\"feature-card\"><h3>Lending Intelligence</h3><p>Data-driven lending recommendations that optimize loan amounts and terms based on thorough financial analysis. Get intelligent insights for structuring loans that balance risk and opportunity.</p><div class=\"feature-meta\">AI-powered decision support</div></div></div><h2>Authentication</h2><p>The API requires two authentication keys for all requests:</p><table class=\"auth-table\"><tr><th>Key Type</th><th>Header Format</th><th>Description</th></tr><tr><td>Subscription Key</td><td><code>Ocp-Apim-Subscription-Key: {YOUR_SUBSCRIPTION_KEY}</code></td><td>Your organization's unique identifier, provided during onboarding</td></tr><tr><td>API Key</td><td><code>Authorization: {YOUR_API_KEY}</code></td><td>Access key for specific endpoints, provided by the Bankuity API team</td></tr></table><div class=\"note\"><strong>Important:</strong> API keys are private and should never be shared or exposed in client-side code. Always store keys securely and use appropriate security measures when implementing the API.</div><h2>Data Processing</h2><p>The API processes financial data through several sophisticated steps:</p><ol><li>Transaction categorization and enrichment</li><li>Income pattern recognition and source identification</li><li>Risk factor analysis and scoring</li><li>Lending recommendation generation</li><li>Alert and insight derivation</li></ol><div class=\"note\"><strong>Version Information:</strong> This documentation covers version 1 (v1) of the Bankuity API. All endpoints are prefixed with /v1 unless otherwise specified.</div>",
+      "version": "v1"
+    },
+    "paths": {
+      "/v2/analysis/insights": {
+        "post": {
+          "tags": [
+            "ApiFeatures"
+          ],
+          "summary": "Get Post On-Boarding Insights",
+          "description": "<h3>The method returns the result corresponding to the requestCode.</h3>\r\n<p>The request code is checked in the database for the specified date, and if this information is not available, it is taken from the IBV provider and analyzed. If the date of an earlier snapshot is specified, then the difference between the two snapshots is analyzed.</p>\r\n<p>\r\n  <i>Sample request:</i>\r\n</p>\r\n<p>POST v2/analysis/insights?requestCode=N4RHKX&ibvProviderName=Chirp&asOfDate=2025-01-16&postOnboardingRefDate=2024-12-10</p>",
+          "parameters": [
+            {
+              "name": "requestCode",
+              "in": "query",
+              "description": "The IBV provider request code.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "ibvProviderName",
+              "in": "query",
+              "description": "IBV provider name",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "asOfDate",
+              "in": "query",
+              "description": "Сurrent date for main analysis scenario",
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "postOnboardingRefDate",
+              "in": "query",
+              "description": "The date against which the analysis result should be compared",
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "unitId",
+              "in": "query",
+              "description": "The unit identifier.",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "Data transmitted by the client",
+            "content": {
+              "application/json": {
+                "schema": { }
+              },
+              "text/json": {
+                "schema": { }
+              },
+              "application/*+json": {
+                "schema": { }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BankuityInsightsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v2/analysis/bankinfo/check": {
+        "post": {
+          "tags": [
+            "ApiFeatures"
+          ],
+          "summary": "Get Bank Account Verification",
+          "description": "<h3>This method returns the following for the bank routing number and account number provided:</h3>\r\n<p>\r\n  <ol>\r\n    <li>AccountInfo: Valid/NotMatch/TokenizedMatch/ProviderError</li>\r\n    <li>Bank name</li>\r\n    <li>Bank account type (checking or savings)</li>\r\n    <li>Account holder name(first name, last name)</li>\r\n  </ol>\r\n</p>\r\n<p>\r\n  <i>Sample request:</i>\r\n</p>\r\n<p>POST v2/analysis/bankinfo/check?requestCode=N4RHKX</p>",
+          "parameters": [
+            {
+              "name": "requestCode",
+              "in": "query",
+              "description": "The IBV provider request code.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "Сurrent date for main analysis scenario",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankInfoCheckRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankInfoCheckRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankInfoCheckRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BankInfoCheckResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v2/analysis/income": {
+        "get": {
+          "tags": [
+            "ApiIAChirp"
+          ],
+          "summary": "Get Analyzing Results",
+          "description": "<h3>The method returns the result corresponding to the requestCode.</h3>\r\n<p>The requestCode is checked with the IBV provider, and if the IBV provider has more recent data, a new snapshot is taken from the provider and analyzed. If no new data is detected, then analysis results stored in the DB will be returned.</p>\r\n<p>\r\n  <i>Sample request:</i>\r\n</p>\r\n<p>GET v2/analysis/income?requestCode=N4RHKX</p>",
+          "parameters": [
+            {
+              "name": "requestCode",
+              "in": "query",
+              "description": "Chirp request code.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "asOfDate",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "ibvProviderName",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "unitId",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 0
+              }
+            },
+            {
+              "name": "forcedProcessing",
+              "in": "query",
+              "description": "Forced processing.",
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetProcessingResultsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v2/connections/status": {
+        "get": {
+          "tags": [
+            "ApiIBVService"
+          ],
+          "summary": "Check Connect",
+          "description": "<h3>The method checks whether there is a connection between the selected request and the IBV provider.</h3>\r\n<p>Sample request:</p>\r\n<p>    GET v2/connections/status?requestId=41c7cb45-2cba-4287-9c6f-6ec1fbc37e77</p>",
+          "parameters": [
+            {
+              "name": "requestId",
+              "in": "query",
+              "description": "Request Id.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/IBVCheckConnectResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v2/connections/refresh": {
+        "post": {
+          "tags": [
+            "ApiIBVService"
+          ],
+          "summary": "Refresh Connect",
+          "description": "<h3>Connect to IBV provider and refresh data</h3>\r\n<p>This method connects to the IBV provider to refresh the client data and creates a new request, in which the new IBV data of the client will be stored. The operation is asynchronous and the new requestID can be used in the call to GetProcessingResults.</p>\r\n<p>Attempting to refresh a request within 3 hours of a successful verification or refresh will not be permitted.</p>\r\n<p>\r\n  <i>Sample request:</i>\r\n</p>\r\n<p>POST v2/connections/refresh?requestId=20f1d43f-7688-4dfa-9d3d-0effd3f86daa</p>",
+          "parameters": [
+            {
+              "name": "requestId",
+              "in": "query",
+              "description": "Request Id.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "forceRefresh",
+              "in": "query",
+              "description": "Forced refresh or not",
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/IBVRefreshResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/GetUnitConfigurations": {
+        "post": {
+          "tags": [
+            "ApiOrganization"
+          ],
+          "parameters": [
+            {
+              "name": "unitId",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Response"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Response"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Response"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/Ping": {
+        "get": {
+          "tags": [
+            "ApiTransDetails"
+          ],
+          "summary": "Check API",
+          "description": "<h3>This endpoint is used to verify the validity of authorization.</h3>",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Response"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Response"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Response"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v2/analysis/income/result": {
+        "get": {
+          "tags": [
+            "ApiTransDetails"
+          ],
+          "summary": "Get Processing Results",
+          "description": "<h3>The method returns the result corresponding to the request ID received in the analysis/income/search method or other methods.</h3>\r\n            Sample request:\r\n            \r\n                GET v2/analysis/income/result?requestId=41c7cb45-2cba-4287-9c6f-6ec1fbc37e77",
+          "parameters": [
+            {
+              "name": "requestId",
+              "in": "query",
+              "description": "Request Id.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "forceProcessing",
+              "in": "query",
+              "description": "Forced processing.",
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetProcessingResultsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v2/analysis/income/search": {
+        "post": {
+          "tags": [
+            "ApiTransDetails"
+          ],
+          "summary": "Get Request Ids",
+          "description": "<h3>This endpoint returns a list of request IDs for a specified period. Only users with the \"Client\" or \"Agent\" roles have the permission to access this endpoint.</h3>\r\n<h4>Filter for GetRequestIds method</h4>\r\n            The filter has three templates for selecting records.\r\n            <ul><li>filterEl - filters by one field.</li><li>filterExp -filters by several fields.</li><li>filterBExp -filters by several filterExp.</li></ul><h4>Fields available for filtering:</h4>\r\n             “AppUserId”,”RequestId”,”Updated”,”Created”,”CustomerName”,”LastUpdated”,”RequestCode”,”SourceType”\r\n            <p>\r\n            You can use any types of filters individually or together.In case of sharing between filters AND operation is used.\r\n            </p>",
+          "requestBody": {
+            "description": "GetRequestIdsRequest.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRequestIdsRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRequestIdsRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRequestIdsRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetRequestIdsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v2/analysis/income/chirpreports": {
+        "post": {
+          "tags": [
+            "ApiTransDetails"
+          ],
+          "summary": "Chirp Process Transactions",
+          "description": "<h3>This endpoint receives IBV data for a customer and return IBV data processing results.</h3>\r\n\r\nRequest body contains Json object containing Chirp reports corresponding to their name. If the report is not used, it can be omitted. the requiestID returned in the report can be used to rerequest same report using GetProcessingResults endpoint\r\n```\r\n            {\r\n                \"RequestStatus\": {}, - The getRequestStatus endpoint response.\r\n                \"TrackInfo\": {}, - The getRequestTrackInfo endpoint response.\r\n                \"RequestDetails\": {}, - The getRequestDetails endpoint response.\r\n                \"AccountOwnerInfo\": {}, - The getAccountOwnerInfo endpoint response.\r\n                \"AccountInfo\": {} - The getAccountInfo endpoint response.\r\n            }\r\n            ```",
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChirpReportsRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChirpReportsRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChirpReportsRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProcessTransactionsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/GetTransactions": {
+        "post": {
+          "tags": [
+            "ApiTransDetails"
+          ],
+          "summary": "Get Transactions",
+          "description": "<h3>The method returns the transactions corresponding to the request ID received in the /TransDetails/GetProcessingResults method.</h3>\r\n            Sample request:\r\n            \r\n                POST api/GetTransactions",
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransactionsRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransactionsRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransactionsRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetTransactionsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/GetTransactionsForRequestCode": {
+        "post": {
+          "tags": [
+            "ApiTransDetails"
+          ],
+          "summary": "Get Transactions",
+          "description": "<h3>The method returns the transactions corresponding to the RequestCode received in the /TransDetails/GetProcessingResults method.</h3>\r\n            Sample request:\r\n            \r\n                POST api/GetTransactionsForRequestCode?requestCode=OPX1YU",
+          "parameters": [
+            {
+              "name": "requestCode",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "accountGuid",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            {
+              "name": "dateFrom",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "dateTo",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "pageNumber",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 1
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 100
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetTransactionsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/Auth/GetJWTToken": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Get Token",
+          "description": "<h3>This endpoint is used to request a temporary JWT (JSON Web Token) that can be used to authenticate subsequent requests to other API methods.</h3>",
+          "operationId": "GetJWTToken",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetTokenResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v2/analysis/income/customer": {
+        "get": {
+          "tags": [
+            "Totality"
+          ],
+          "summary": "Get Analyzing Result For Customer",
+          "description": "<h3>This method takes IBV data for CustomerUUID from LMS system and return Analysis results.</h3>\r\n<p></p>",
+          "parameters": [
+            {
+              "name": "customerUUID",
+              "in": "query",
+              "description": "UUID parameter of customer",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "templateid",
+              "in": "query",
+              "description": "Template to be used to post comment back to LMS system",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 1
+              }
+            },
+            {
+              "name": "ibvProviderName",
+              "in": "query",
+              "description": "IBV provider name.",
+              "schema": {
+                "type": "string",
+                "default": "Chirp"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Response"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AUResponseVMAddInfo": {
+          "type": "object",
+          "properties": {
+            "accounts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AUResponseVMAddInfoAccount"
+              },
+              "description": "List of account information",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "AUResponseVMAddInfoAccount": {
+          "type": "object",
+          "properties": {
+            "accountGuid": {
+              "type": "string",
+              "description": "Account Unique Identifier.",
+              "nullable": true
+            },
+            "isPrimary": {
+              "type": "boolean",
+              "description": "Indicates if this is the primary account."
+            },
+            "activeMonthlyIncome": {
+              "type": "number",
+              "description": "Total active monthly income from income sources.",
+              "format": "double"
+            },
+            "riskScore": {
+              "type": "number",
+              "description": "Numeric representation of the risk score.",
+              "format": "double"
+            },
+            "minLoan": {
+              "type": "integer",
+              "description": "Minimum eligible loan amount.",
+              "format": "int32"
+            },
+            "maxLoan": {
+              "type": "integer",
+              "description": "Maximum eligible loan amount.",
+              "format": "int32"
+            },
+            "availableBalance": {
+              "type": "number",
+              "description": "Current available account balance.",
+              "format": "double",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Account": {
+          "type": "object",
+          "properties": {
+            "account_number": {
+              "type": "string",
+              "description": "Account number associated with the account.",
+              "nullable": true
+            },
+            "apr": {
+              "type": "number",
+              "description": "Annual Percentage Rate (APR) applied to the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "apy": {
+              "type": "number",
+              "description": "Annual Percentage Yield (APY) associated with the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "available_balance": {
+              "type": "number",
+              "description": "Available balance in the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "available_credit": {
+              "type": "number",
+              "description": "Available credit for the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "balance": {
+              "type": "number",
+              "description": "Current balance of the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "cash_balance": {
+              "type": "number",
+              "description": "Cash balance in the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "created_at": {
+              "type": "string",
+              "description": "Date and time when the account was created.",
+              "nullable": true
+            },
+            "credit_limit": {
+              "type": "number",
+              "description": "Credit limit associated with the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "currency_code": {
+              "type": "string",
+              "description": "Currency code used for the account.",
+              "nullable": true
+            },
+            "guid": {
+              "type": "string",
+              "description": "Globally unique identifier (GUID) for the account.",
+              "nullable": true
+            },
+            "holdings_value": {
+              "type": "number",
+              "description": "Total value of holdings in the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "interest_rate": {
+              "type": "number",
+              "description": "Interest rate applied to the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "institution_code": {
+              "type": "string",
+              "description": "Institution code associated with the account.",
+              "nullable": true
+            },
+            "is_closed": {
+              "type": "boolean",
+              "description": "Indicates whether the account is closed.",
+              "nullable": true
+            },
+            "type": {
+              "type": "string",
+              "description": "Type of the account (e.g., savings, checking).",
+              "nullable": true
+            },
+            "subtype": {
+              "type": "string",
+              "description": "Subtype of the account (e.g., premium, standard).",
+              "nullable": true
+            },
+            "updated_at": {
+              "type": "string",
+              "description": "Date and time when the account was last updated.",
+              "nullable": true
+            },
+            "user_guid": {
+              "type": "string",
+              "description": "User GUID associated with the account.",
+              "nullable": true
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for the account.",
+              "nullable": true
+            },
+            "premium_amount": {
+              "type": "number",
+              "description": "Premium amount associated with the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "routing_number": {
+              "type": "string",
+              "description": "Routing number linked to the account.",
+              "nullable": true
+            },
+            "imported_at": {
+              "type": "string",
+              "description": "Date and time when the account was imported.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "AccountNumberInfo": {
+          "type": "object",
+          "properties": {
+            "account_number": {
+              "type": "string",
+              "description": "Account number associated with the bank account.",
+              "nullable": true
+            },
+            "routing_number": {
+              "type": "string",
+              "description": "Routing number used for identifying the financial institution.",
+              "nullable": true
+            },
+            "transit_number": {
+              "type": "string",
+              "description": "Transit number associated with the bank account.",
+              "nullable": true
+            },
+            "institution_number": {
+              "type": "string",
+              "description": "Institution number of the financial institution.",
+              "nullable": true
+            },
+            "passed_validation": {
+              "type": "boolean",
+              "description": "Indicates whether the account has passed validation checks."
+            },
+            "masked_account_number": {
+              "type": "string",
+              "nullable": true
+            },
+            "chirpAccountId": {
+              "type": "string",
+              "nullable": true
+            },
+            "bankName": {
+              "type": "string",
+              "nullable": true
+            },
+            "accountType": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "AccountOwnerInfo": {
+          "type": "object",
+          "properties": {
+            "owner_name": {
+              "type": "string",
+              "description": "Full name of the account owner.",
+              "nullable": true
+            },
+            "address": {
+              "type": "string",
+              "description": "Street address of the account owner.",
+              "nullable": true
+            },
+            "city": {
+              "type": "string",
+              "description": "City of the account owner's address.",
+              "nullable": true
+            },
+            "state": {
+              "type": "string",
+              "description": "State or province of the account owner's address.",
+              "nullable": true
+            },
+            "postal_code": {
+              "type": "string",
+              "description": "Postal or ZIP code of the account owner's address.",
+              "nullable": true
+            },
+            "country": {
+              "type": "string",
+              "description": "Country of the account owner's address.",
+              "nullable": true
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address of the account owner.",
+              "nullable": true
+            },
+            "phone": {
+              "type": "string",
+              "description": "Phone number of the account owner.",
+              "nullable": true
+            },
+            "first_name": {
+              "type": "string",
+              "description": "First name of the account owner.",
+              "nullable": true
+            },
+            "last_name": {
+              "type": "string",
+              "description": "Last name of the account owner.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "BankInfoCheckRequest": {
+          "type": "object",
+          "properties": {
+            "routingNumber": {
+              "type": "string",
+              "nullable": true
+            },
+            "accountNumber": {
+              "type": "string",
+              "nullable": true
+            },
+            "ibvProviderName": {
+              "type": "string",
+              "nullable": true
+            },
+            "unitId": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "BankInfoCheckResponse": {
+          "type": "object",
+          "properties": {
+            "succeeded": {
+              "type": "boolean",
+              "description": "Operation execution status",
+              "example": false
+            },
+            "message": {
+              "type": "string",
+              "description": "Additional information about the operation.",
+              "nullable": true,
+              "example": "Error message."
+            },
+            "data": {
+              "description": "Additional information object.",
+              "nullable": true,
+              "example": null
+            },
+            "RequestCode": {
+              "type": "string",
+              "description": "Operation execution status",
+              "nullable": true,
+              "example": "XYZXYZ"
+            },
+            "IBVProviderName": {
+              "type": "string",
+              "description": "IBV Provider Name",
+              "nullable": true,
+              "example": "Chirp"
+            },
+            "AccountInfo": {
+              "type": "string",
+              "description": "Operation execution status",
+              "nullable": true,
+              "example": "Valid/NotMatch/TokenizedMatch/ProviderError"
+            },
+            "BankName": {
+              "type": "string",
+              "description": "Bank name",
+              "nullable": true,
+              "example": "Chirp Test Bank"
+            },
+            "BankAccountType": {
+              "type": "string",
+              "description": "Bank account type",
+              "nullable": true,
+              "example": "Checking/Saving"
+            },
+            "HolderName": {
+              "type": "string",
+              "description": "Holder's Name",
+              "nullable": true,
+              "example": "John Doe"
+            }
+          },
+          "additionalProperties": false
+        },
+        "BankuityInsightsResponse": {
+          "type": "object",
+          "properties": {
+            "succeeded": {
+              "type": "boolean",
+              "description": "Operation execution status",
+              "example": false
+            },
+            "message": {
+              "type": "string",
+              "description": "Additional information about the operation.",
+              "nullable": true,
+              "example": "Error message."
+            },
+            "data": {
+              "description": "Additional information object.",
+              "nullable": true,
+              "example": null
+            },
+            "requestId": {
+              "type": "string",
+              "nullable": true
+            },
+            "requestCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "ibvProviderName": {
+              "type": "string",
+              "nullable": true
+            },
+            "initialRequestId": {
+              "type": "string",
+              "nullable": true
+            },
+            "asOfDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "postOnboardingRefId": {
+              "type": "string",
+              "nullable": true
+            },
+            "postOnboardingRefDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "biConnectionStatus": {
+              "type": "string",
+              "nullable": true
+            },
+            "biLatestTransaction": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "bankuityInsights": {
+              "nullable": true
+            },
+            "technicalDetails": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "ChirpReportsRequest": {
+          "type": "object",
+          "properties": {
+            "RequestStatus": {
+              "$ref": "#/components/schemas/GetRequestStatusResponse"
+            },
+            "TrackInfo": {
+              "$ref": "#/components/schemas/GetRequestTrackInfoResponse"
+            },
+            "RequestDetails": {
+              "$ref": "#/components/schemas/GetRequestDetailsResponse"
+            },
+            "AccountOwnerInfo": {
+              "$ref": "#/components/schemas/GetAccountOwnerInfoResponse"
+            },
+            "AccountInfo": {
+              "$ref": "#/components/schemas/GetAccountInfoResponse"
+            }
+          },
+          "additionalProperties": false
+        },
+        "ClaimDetails": {
+          "type": "object",
+          "properties": {
+            "claimType": {
+              "type": "string",
+              "nullable": true
+            },
+            "claimValue": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Expense": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "description": "The monetary value of the expense.",
+              "nullable": true
+            },
+            "category": {
+              "type": "string",
+              "description": "The category under which the expense is classified.",
+              "nullable": true
+            },
+            "percent": {
+              "type": "string",
+              "description": "The percentage representation of the expense in relation to a total amount.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "FilterBigExpression": {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "type": "string",
+              "description": "Type of operation (\"AND\", \"OR\")",
+              "nullable": true
+            },
+            "expressions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FilterExpression"
+              },
+              "description": "List of filters for multiple fields with the same AND or OR operation",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false,
+          "description": "Filter for multiple fields with the different AND or OR operation"
+        },
+        "FilterElement": {
+          "type": "object",
+          "properties": {
+            "fieldName": {
+              "type": "string",
+              "description": "Field name",
+              "nullable": true,
+              "example": "AppUserId"
+            },
+            "fieldValue": {
+              "type": "string",
+              "description": "Lookup value for table field.",
+              "nullable": true,
+              "example": "aef8ac5d-70c2-48d1-822c-bc40bc7c281e"
+            },
+            "mode": {
+              "type": "string",
+              "description": "Type of operation (\"exactMatch\", \"likeMatch\", \"between\",\"in\")",
+              "nullable": true,
+              "example": "exactMatch"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Filter for single field"
+        },
+        "FilterExpression": {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "type": "string",
+              "description": "Type of operation (\"AND\", \"OR\")",
+              "nullable": true
+            },
+            "elements": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FilterElement"
+              },
+              "description": "List of filters for single field",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false,
+          "description": "Filter for multiple fields with the same AND or OR operation"
+        },
+        "FilterTemplates": {
+          "type": "object",
+          "properties": {
+            "filterEl": {
+              "$ref": "#/components/schemas/FilterElement"
+            },
+            "filterExp": {
+              "$ref": "#/components/schemas/FilterExpression"
+            },
+            "filterBExp": {
+              "$ref": "#/components/schemas/FilterBigExpression"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Filter for searching requests"
+        },
+        "GetAccountInfoResponse": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            },
+            "StatusCode": {
+              "$ref": "#/components/schemas/HttpStatusCode"
+            },
+            "accountNumber": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AccountNumberInfo"
+              },
+              "nullable": true
+            },
+            "status": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetAccountOwnerInfoResponse": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            },
+            "StatusCode": {
+              "$ref": "#/components/schemas/HttpStatusCode"
+            },
+            "accountOwnerInfo": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AccountOwnerInfo"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetProcessingResultsResponse": {
+          "type": "object",
+          "properties": {
+            "requestId": {
+              "type": "string",
+              "description": "The unique identifier for the request.",
+              "nullable": true
+            },
+            "availableProducts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A list of available products.",
+              "nullable": true
+            },
+            "processingResult": {
+              "$ref": "#/components/schemas/ProcResult"
+            },
+            "application": {
+              "description": "The application details, if any.",
+              "nullable": true
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A list of errors encountered during processing.",
+              "nullable": true
+            },
+            "historicalReports": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/HistoricalReport"
+              },
+              "description": "A list of historical reports.",
+              "nullable": true
+            },
+            "ibvStatusInfo": {
+              "$ref": "#/components/schemas/IBVStatusInfo"
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetRequestDetailsResponse": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            },
+            "StatusCode": {
+              "$ref": "#/components/schemas/HttpStatusCode"
+            },
+            "RequestCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "Accounts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Account"
+              },
+              "nullable": true
+            },
+            "TransactionSummaries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/TransactionSummary"
+              },
+              "nullable": true
+            },
+            "TransactionAnalysisSummaries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/TransactionAnalysisSummary"
+              },
+              "nullable": true
+            },
+            "AccountExpenses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Expense"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetRequestIdsRequest": {
+          "type": "object",
+          "properties": {
+            "filter": {
+              "$ref": "#/components/schemas/FilterTemplates"
+            },
+            "pageNumber": {
+              "type": "integer",
+              "description": "Page number",
+              "format": "int32"
+            },
+            "pageSize": {
+              "type": "integer",
+              "description": "Page size",
+              "format": "int32"
+            },
+            "sortFieldName": {
+              "type": "string",
+              "description": "Field name to sort by",
+              "nullable": true
+            },
+            "orderByDescending": {
+              "type": "boolean",
+              "description": "Order by descending or not"
+            },
+            "providerName": {
+              "type": "string",
+              "description": "Provider name",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetRequestIdsResponse": {
+          "type": "object",
+          "properties": {
+            "totalPages": {
+              "type": "integer",
+              "description": "Total number of pages.",
+              "format": "int32",
+              "example": 5
+            },
+            "totalRequests": {
+              "type": "integer",
+              "description": "Total number of requests.",
+              "format": "int32",
+              "example": 94
+            },
+            "pageNumber": {
+              "type": "integer",
+              "description": "Page number to return. Start from 1. Default is 1.",
+              "format": "int32"
+            },
+            "pageSize": {
+              "type": "integer",
+              "description": "Number of requests on one page. Default is 100.",
+              "format": "int32"
+            },
+            "sortFieldName": {
+              "type": "string",
+              "description": "Field name for sorting.",
+              "nullable": true
+            },
+            "orderByDescending": {
+              "type": "boolean",
+              "description": "Sort in descending order. Default is false."
+            },
+            "requestIds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RequestIdVM"
+              },
+              "description": "List of Request Information Objects.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetRequestStatusResponse": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            },
+            "StatusCode": {
+              "$ref": "#/components/schemas/HttpStatusCode"
+            },
+            "response": {
+              "$ref": "#/components/schemas/RequestStatusResponse"
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetRequestTrackInfoResponse": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            },
+            "StatusCode": {
+              "$ref": "#/components/schemas/HttpStatusCode"
+            },
+            "result": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RequestCodeReport"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetTokenResponse": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string",
+              "description": "The token to be used in all subsequent calls, will expire in 60 minutes.",
+              "nullable": true,
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...-XPrPc2U1cc"
+            },
+            "availableProducts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The list of products available for the authorized customer.",
+              "nullable": true,
+              "example": [
+                "Incomes"
+              ]
+            },
+            "lastLogindate": {
+              "type": "string",
+              "description": "Last login date.",
+              "nullable": true,
+              "example": "2023-10-26T14:22:26.501Z"
+            },
+            "passwordExpiryDate": {
+              "type": "string",
+              "description": "Password expiry date.",
+              "nullable": true,
+              "example": "2025-10-26T14:22:26.501Z"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Array of strings describing errors.",
+              "nullable": true
+            },
+            "userName": {
+              "type": "string",
+              "description": "User name.",
+              "nullable": true,
+              "example": "User Name"
+            },
+            "redirectLink": {
+              "type": "string",
+              "description": "After login on which page user should be redirected",
+              "nullable": true
+            },
+            "claimList": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ClaimDetails"
+              },
+              "nullable": true
+            },
+            "roleIds": {
+              "type": "string",
+              "nullable": true
+            },
+            "childRoleIds": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetTransactionsRequest": {
+          "type": "object",
+          "properties": {
+            "rid": {
+              "type": "string",
+              "description": "Request Id",
+              "nullable": true
+            },
+            "accountGuid": {
+              "type": "string",
+              "description": "Account Guid",
+              "nullable": true
+            },
+            "pageNumber": {
+              "type": "integer",
+              "description": "page number to start with",
+              "format": "int32"
+            },
+            "pageSize": {
+              "type": "integer",
+              "description": "Number of requests on one page. Default is 100.",
+              "format": "int32"
+            },
+            "sortBy": {
+              "type": "string",
+              "description": "sort by",
+              "nullable": true
+            },
+            "sortOrder": {
+              "type": "string",
+              "description": "sort order",
+              "nullable": true
+            },
+            "filters": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "GetTransactionsResponse": {
+          "type": "object",
+          "properties": {
+            "succeeded": {
+              "type": "boolean",
+              "description": "Operation execution status",
+              "example": false
+            },
+            "message": {
+              "type": "string",
+              "description": "Additional information about the operation.",
+              "nullable": true,
+              "example": "Error message."
+            },
+            "data": {
+              "description": "Additional information object.",
+              "nullable": true,
+              "example": null
+            },
+            "totalPages": {
+              "type": "integer",
+              "description": "Total number of pages.",
+              "format": "int32",
+              "example": 5
+            },
+            "totalTransactions": {
+              "type": "integer",
+              "description": "Total number of transactions.",
+              "format": "int32",
+              "example": 94
+            },
+            "pageNumber": {
+              "type": "integer",
+              "description": "Page number to return. Start from 1. Default is 1.",
+              "format": "int32"
+            },
+            "pageSize": {
+              "type": "integer",
+              "description": "Number of requests on one page. Default is 100.",
+              "format": "int32"
+            },
+            "totalAmount": {
+              "type": "number",
+              "description": "Total Amount of the transactions. Default is 0;",
+              "format": "double"
+            },
+            "transactions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisTransaction"
+              },
+              "description": "List of Transaction Objects.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "HistoricalReport": {
+          "type": "object",
+          "properties": {
+            "requestId": {
+              "type": "string",
+              "description": "The unique identifier for the request.",
+              "nullable": true
+            },
+            "updated": {
+              "type": "string",
+              "description": "The date and time when the object was last updated, formatted in the default time zone.",
+              "nullable": true,
+              "readOnly": true
+            },
+            "snapshotDate": {
+              "type": "string",
+              "description": "The snapshot date and time, formatted in the default time zone.",
+              "nullable": true,
+              "readOnly": true
+            },
+            "unitName": {
+              "type": "string",
+              "description": "The name of the unit associated with the request.",
+              "nullable": true
+            },
+            "refreshedBy": {
+              "type": "string",
+              "description": "The name of the person who refreshed the request.",
+              "nullable": true
+            },
+            "status": {
+              "type": "string",
+              "description": "The string representation of the request's status.",
+              "nullable": true,
+              "readOnly": true
+            },
+            "feature": {
+              "type": "string",
+              "description": "The name of the feature.",
+              "nullable": true
+            },
+            "additionalInfo": {
+              "$ref": "#/components/schemas/AUResponseVMAddInfo"
+            }
+          },
+          "additionalProperties": false
+        },
+        "HttpStatusCode": {
+          "enum": [
+            100,
+            101,
+            102,
+            103,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            226,
+            300,
+            301,
+            302,
+            303,
+            304,
+            305,
+            306,
+            307,
+            308,
+            400,
+            401,
+            402,
+            403,
+            404,
+            405,
+            406,
+            407,
+            408,
+            409,
+            410,
+            411,
+            412,
+            413,
+            414,
+            415,
+            416,
+            417,
+            421,
+            422,
+            423,
+            424,
+            426,
+            428,
+            429,
+            431,
+            451,
+            500,
+            501,
+            502,
+            503,
+            504,
+            505,
+            506,
+            507,
+            508,
+            510,
+            511
+          ],
+          "type": "integer",
+          "format": "int32"
+        },
+        "IBVCheckConnectResponse": {
+          "type": "object",
+          "properties": {
+            "requestId": {
+              "type": "string",
+              "description": "Request Id.",
+              "nullable": true,
+              "example": "41c7cb45-2cba-4287-9c6f-6ec1fbc37e77"
+            },
+            "status": {
+              "type": "string",
+              "description": "Status of IBV connection (Verified,Attempted,...).",
+              "nullable": true
+            },
+            "connected": {
+              "type": "boolean",
+              "description": "RequestCode is connected to IBV.",
+              "example": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IBVRefreshResponse": {
+          "type": "object",
+          "properties": {
+            "succeeded": {
+              "type": "boolean",
+              "description": "Operation execution status",
+              "example": false
+            },
+            "message": {
+              "type": "string",
+              "description": "Additional information about the operation.",
+              "nullable": true,
+              "example": "Error message."
+            },
+            "data": {
+              "description": "Additional information object.",
+              "nullable": true,
+              "example": null
+            },
+            "requestId": {
+              "type": "string",
+              "description": "Request Id.",
+              "nullable": true
+            },
+            "errorCode": {
+              "type": "integer",
+              "description": "Error code.",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IBVStatusInfo": {
+          "type": "object",
+          "properties": {
+            "ibvStatus": {
+              "type": "string",
+              "description": "The current status of the IBV (e.g., active, inactive, pending).",
+              "nullable": true
+            },
+            "requestCodeStatus": {
+              "type": "string",
+              "description": "The status associated with the request code, indicating the outcome or current state.",
+              "nullable": true
+            },
+            "subscribedOn": {
+              "type": "string",
+              "description": "The date and time when the subscription was first created or activated.",
+              "nullable": true
+            },
+            "refreshedOn": {
+              "type": "string",
+              "description": "The date and time when the subscription was last refreshed or updated.",
+              "nullable": true
+            },
+            "unsubscribedOn": {
+              "type": "string",
+              "description": "The date and time when the subscription was unsubscribed or deactivated.",
+              "nullable": true
+            },
+            "lastRequestId": {
+              "type": "string",
+              "description": "The unique identifier for the last request made, used for tracking and reference.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IdName": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "Name": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysis": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique Identifier.",
+              "nullable": true
+            },
+            "sourceType": {
+              "type": "string",
+              "description": "Source type.",
+              "nullable": true
+            },
+            "metadata": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisMetadata"
+            },
+            "customerInfo": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisCustomerInfo"
+            },
+            "accounts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfo"
+              },
+              "nullable": true
+            },
+            "posResponse": {
+              "description": "Post onboarding services response.",
+              "nullable": true
+            },
+            "modelVersion": {
+              "type": "string",
+              "description": "Model Version.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfo": {
+          "type": "object",
+          "properties": {
+            "accountGuid": {
+              "type": "string",
+              "description": "Account Unique Identifierc",
+              "nullable": true
+            },
+            "primaryIncomeAccount": {
+              "type": "boolean",
+              "description": "Primary Income Account.\r\n<ul><li>true</li><li>false</li></ul>"
+            },
+            "currentBalance": {
+              "type": "number",
+              "description": "Current Balance",
+              "format": "double",
+              "nullable": true
+            },
+            "availableBalance": {
+              "type": "number",
+              "description": "Available Balance",
+              "format": "double",
+              "nullable": true
+            },
+            "historicalBalances": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoHistoricalBalanceItem"
+              },
+              "description": "The collection of historical balance items for the account.",
+              "nullable": true
+            },
+            "daysWithNegativeBalance": {
+              "type": "integer",
+              "description": "Number of days with negative balance.",
+              "format": "int32"
+            },
+            "banking": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoBanking"
+            },
+            "lendingGuide": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisLendingGuide"
+            },
+            "activeIncome": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoActiveIncome"
+            },
+            "monthlyIncome": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoMonthlyIncome"
+            },
+            "allTime": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoScope"
+            },
+            "threeMonth": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoScope"
+            },
+            "sixMonth": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoScope"
+            },
+            "incomeSources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoIncomeSource"
+              },
+              "nullable": true
+            },
+            "loanSources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoLoanSource"
+              },
+              "nullable": true
+            },
+            "overdraftIncidents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoOverdraftIncident"
+              },
+              "nullable": true
+            },
+            "cashFlow": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoCashFlow"
+            },
+            "inflowExcludingLoans": {
+              "type": "number",
+              "description": "Inflow excluding loans for the account.",
+              "format": "double",
+              "nullable": true
+            },
+            "assessmentReasons": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "assessmentReasonsBad": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "assessmentReasonsGood": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "riskAnalysis": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisRiskAnalysis"
+            },
+            "incomeBreakdown": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoIncomeBreakdown"
+            },
+            "predictedPaydays": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoPredictedPaydays"
+              },
+              "nullable": true
+            },
+            "transactionsRange": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoTransactionsRange"
+            },
+            "transactions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisTransaction"
+              },
+              "nullable": true
+            },
+            "features": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoFeatures"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoActiveIncome": {
+          "type": "object",
+          "properties": {
+            "activePayrollIncome": {
+              "type": "number",
+              "description": "Total active payroll income.",
+              "format": "double"
+            },
+            "activePayrollIncomeSources": {
+              "type": "integer",
+              "description": "Number of active payroll income sources.",
+              "format": "int32"
+            },
+            "activeBenefitIncome": {
+              "type": "number",
+              "description": "Total active benefit income.",
+              "format": "double"
+            },
+            "activeBenefitIncomeSources": {
+              "type": "integer",
+              "description": "Number of active benefit income sources.",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoBanking": {
+          "type": "object",
+          "properties": {
+            "accountNumber": {
+              "type": "string",
+              "description": "Masked account number.",
+              "nullable": true
+            },
+            "routingNumber": {
+              "type": "string",
+              "description": "Masked routing number.",
+              "nullable": true
+            },
+            "debitCard": {
+              "type": "string",
+              "description": "Masked debit card number.",
+              "nullable": true
+            },
+            "card": {
+              "description": "Card details object.",
+              "nullable": true
+            },
+            "ibv": {
+              "type": "string",
+              "description": "IBV status.",
+              "nullable": true
+            },
+            "accountType": {
+              "type": "string",
+              "description": "Type of bank account.",
+              "nullable": true
+            },
+            "bankName": {
+              "type": "string",
+              "description": "Name of the bank.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoCashFlow": {
+          "type": "object",
+          "properties": {
+            "totalCredits": {
+              "type": "number",
+              "description": "Sum of credit transaction amount of each account",
+              "format": "double",
+              "nullable": true
+            },
+            "totalDebits": {
+              "type": "number",
+              "description": "Sum of debit transactions amount of each account",
+              "format": "double",
+              "nullable": true
+            },
+            "netCashFlow": {
+              "type": "number",
+              "description": "<ul>\r\n  <li>\r\n    <b>If the transactions happened over more than 30 days:</b>\r\n    <ul>\r\n      <li>Calculates an average monthly cash flow based on the total money coming in (credits) and going out (debits) during that time.</li>\r\n    </ul>\r\n  </li>\r\n</ul>\r\n<ul>\r\n  <li>\r\n    <b>If the transactions happened within 30 days or less:</b>\r\n    <ul>\r\n      <li>Calculates the net cash flow by subtracting the total money spent (debits) from the total money received (credits).</li>\r\n    </ul>\r\n  </li>\r\n</ul>",
+              "format": "double",
+              "nullable": true
+            },
+            "spending": {
+              "type": "number",
+              "description": "<ul>\r\n  <li>\r\n    <b>If the spending  happened over more than 30 days:</b>\r\n    <ul>\r\n      <li>Calculates an average monthly spending based on the total amount spent (debits) over that time.</li>\r\n    </ul>\r\n  </li>\r\n</ul>\r\n<ul>\r\n  <li>\r\n    <b>If the spending  happened within 30 days or less:</b>\r\n    <ul>\r\n      <li>Calculates the total amount spent without averaging it over a month.</li>\r\n    </ul>\r\n  </li>\r\n</ul>",
+              "format": "double",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoFeatures": {
+          "type": "object",
+          "properties": {
+            "activeMonthlyIncome": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "active_count_0": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "active_count_1": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "active_count_2": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "active_count_3": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "active_monthly_0": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "active_monthly_1": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "active_monthly_2": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "active_monthly_3": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "allTimeMonthlyIncome": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "averageMonthlyBalanceAll": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_peak_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_peak_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_peak_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_peak_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_prominence_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "cashflowAllTime": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "good_days_to_debit_by_peak_100": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_peak_250": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_peak_500": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_valley_100": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_valley_250": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_valley_500": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "incomeHistoryAllTime": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "incomeSourceAllTime": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_Benefit": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_Deposit": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_Payroll": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_Transfer": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_gig": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "inflowExcludingLoans": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "loanIdentifiedAllTime": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "loanPmtAllTime": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_balance_differences": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_peak_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_peak_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_peak_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_peak_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_valley_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_valley_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_valley_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_prominence_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_prominence_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_prominence_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_prominence_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "n_peak_100": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_peak_250": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_peak_500": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_valley_100": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_valley_250": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_valley_500": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "net_cashflow_from_start_to_end": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "num_of_originations": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "num_of_pays": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "odAll": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "peak_good_days_to_debit_trans_history_ratio100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_good_days_to_debit_trans_history_ratio250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_good_days_to_debit_trans_history_ratio500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_most_recent_gtd_length_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_most_recent_gtd_length_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_most_recent_gtd_length_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_trans_history_ratio_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_trans_history_ratio_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_trans_history_ratio_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "recurringMonthlyIncome": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "recurring_count_1": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "recurring_count_2": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "recurring_count_3": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "recurring_monthly_1": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "recurring_monthly_2": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "recurring_monthly_3": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "totalCredits": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "totalDebits": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_monthly1": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_Benefit": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_Deposit": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_Payroll": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_Transfer": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_gig": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "transation_period_lengths": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "valley_good_days_to_debit_trans_history_ratio100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_good_days_to_debit_trans_history_ratio250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_good_days_to_debit_trans_history_ratio500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_most_recent_gtd_length_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_most_recent_gtd_length_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_most_recent_gtd_length_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_trans_history_ratio_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_trans_history_ratio_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_trans_history_ratio_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoHistoricalBalanceItem": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "description": "Date",
+              "nullable": true
+            },
+            "balance": {
+              "type": "number",
+              "description": "Balance at the end of the day",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoIncomeBreakdown": {
+          "type": "object",
+          "properties": {
+            "highestMonthlyIncome": {
+              "type": "number",
+              "description": "Highest recorded monthly income.",
+              "format": "double"
+            },
+            "highestMonthlyIncomeDate": {
+              "type": "string",
+              "description": "Date of highest recorded monthly income.",
+              "nullable": true
+            },
+            "lowestMonthlyIncome": {
+              "type": "number",
+              "description": "Lowest recorded monthly income.",
+              "format": "double"
+            },
+            "lowestMonthlyIncomeDate": {
+              "type": "string",
+              "description": "Date of lowest recorded monthly income.",
+              "nullable": true
+            },
+            "monthlyBreakdown": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoIncomeBreakdownMonthlyItem"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoIncomeBreakdownMonthlyItem": {
+          "type": "object",
+          "properties": {
+            "month": {
+              "type": "integer",
+              "description": "Number of Month",
+              "format": "int32"
+            },
+            "year": {
+              "type": "integer",
+              "description": "Year",
+              "format": "int32"
+            },
+            "incomeEvents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoIncomeBreakdownMonthlyItemEvent"
+              },
+              "nullable": true
+            },
+            "overview": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoIncomeBreakdownMonthlyItemOverview"
+            },
+            "series": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoIncomeBreakdownMonthlyItemSeries"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoIncomeBreakdownMonthlyItemEvent": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Type of an item.\r\n<ul><li>Salary Wage</li><li>Retirement Benefits</li><li>SelfFreelance - NDD Income </li><li>SelfFreelance - GIG Income</li><li>Transfers</li><li>Others</li><li>Loans</li></ul>",
+              "nullable": true
+            },
+            "date": {
+              "type": "string",
+              "description": "Date",
+              "nullable": true
+            },
+            "amount": {
+              "type": "number",
+              "description": "Amount of an item",
+              "format": "double"
+            },
+            "sourceID": {
+              "type": "string",
+              "description": "Source Identifier",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoIncomeBreakdownMonthlyItemOverview": {
+          "type": "object",
+          "properties": {
+            "totalIncome": {
+              "type": "number",
+              "description": "Total income amount.",
+              "format": "double"
+            },
+            "totalIncomeDelta": {
+              "type": "number",
+              "description": "Change in total income over time.",
+              "format": "double"
+            },
+            "primarySource": {
+              "type": "string",
+              "description": "Primary income source.",
+              "nullable": true
+            },
+            "totalTransactions": {
+              "type": "integer",
+              "description": "Total number of transactions.",
+              "format": "int32"
+            },
+            "latestCredit": {
+              "type": "string",
+              "description": "Date or amount of the latest credit transaction.",
+              "nullable": true
+            },
+            "cashFlow": {
+              "type": "number",
+              "description": "Net cash flow.",
+              "format": "double"
+            },
+            "cashFlowDelta": {
+              "type": "number",
+              "description": "Change in cash flow over time.",
+              "format": "double"
+            },
+            "totalSpending": {
+              "type": "number",
+              "description": "Total spending amount.",
+              "format": "double"
+            },
+            "endingBalance": {
+              "type": "number",
+              "description": "Ending balance amount.",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoIncomeBreakdownMonthlyItemSeries": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Type of an item.\r\n<ul><li>Salary Wage</li><li>Retirement Benefits</li><li>SelfFreelance - NDD Income </li><li>SelfFreelance - GIG Income</li><li>Transfers</li><li>Others</li><li>Loans</li></ul>",
+              "nullable": true
+            },
+            "amount": {
+              "type": "number",
+              "description": "Amount of an item.",
+              "format": "double"
+            },
+            "amountDelta": {
+              "type": "number",
+              "description": "Amount Delta of an item.",
+              "format": "double"
+            },
+            "mainSource": {
+              "type": "string",
+              "description": "Main source.",
+              "nullable": true
+            },
+            "transactionsCount": {
+              "type": "integer",
+              "description": "Transactions count.",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoIncomeSource": {
+          "type": "object",
+          "properties": {
+            "activeScore": {
+              "type": "integer",
+              "description": "The active score associated with the user or payment.",
+              "format": "int32"
+            },
+            "depositMethod": {
+              "type": "string",
+              "description": "The method used for depositing payments.",
+              "nullable": true
+            },
+            "frequency": {
+              "type": "string",
+              "description": "The frequency of income payments.",
+              "nullable": true
+            },
+            "pastDeposits": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The list of past deposits made.",
+              "nullable": true
+            },
+            "incomeType": {
+              "type": "string",
+              "description": "The type of income.",
+              "nullable": true
+            },
+            "lastPayDay": {
+              "type": "string",
+              "description": "The most recent payday.",
+              "nullable": true
+            },
+            "missingPayDay": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The list of missing payday records.",
+              "nullable": true
+            },
+            "estimatedMonthlyIncome": {
+              "type": "number",
+              "description": "Estimated monthly income.",
+              "format": "double",
+              "nullable": true
+            },
+            "numOfPay": {
+              "type": "integer",
+              "description": "The total number of pay periods.",
+              "format": "int32"
+            },
+            "numOfPayMonthly": {
+              "type": "integer",
+              "description": "The number of pay periods in a month.",
+              "format": "int32"
+            },
+            "perPayCheck": {
+              "type": "number",
+              "description": "The amount received per paycheck.",
+              "format": "double"
+            },
+            "recurringScore": {
+              "type": "integer",
+              "description": "Recurring score for the income source.",
+              "format": "int32"
+            },
+            "regularPayDay": {
+              "type": "string",
+              "description": "The regular payday.",
+              "nullable": true
+            },
+            "sameDayFreq": {
+              "type": "integer",
+              "description": "The frequency of same-day payments.",
+              "format": "int32"
+            },
+            "sourceChannel": {
+              "type": "string",
+              "description": "The source channel for the payment.",
+              "nullable": true
+            },
+            "sourceID": {
+              "type": "string",
+              "description": "Identifier for the income source.",
+              "nullable": true
+            },
+            "incomeSource": {
+              "type": "string",
+              "description": "The source of the income.",
+              "nullable": true
+            },
+            "sourceType": {
+              "type": "string",
+              "description": "The type of source for the payment.",
+              "nullable": true
+            },
+            "stabilityScore": {
+              "type": "integer",
+              "description": "Stability score for the income source.",
+              "format": "int32"
+            },
+            "stableMonthlyIncome": {
+              "type": "number",
+              "description": "Stable monthly income from this source.",
+              "format": "double"
+            },
+            "isDominant": {
+              "type": "integer",
+              "description": "A flag indicating whether the payment method is dominant.",
+              "format": "int32"
+            },
+            "nextPayDay": {
+              "type": "string",
+              "description": "",
+              "nullable": true
+            },
+            "paymentNearHoliday": {
+              "type": "string",
+              "description": "",
+              "nullable": true
+            },
+            "nextPayDayOnHoliday": {
+              "description": "",
+              "nullable": true
+            },
+            "errorCode": {
+              "type": "integer",
+              "description": "Error code if applicable.",
+              "format": "int32"
+            },
+            "errorMessage": {
+              "type": "string",
+              "description": "Error message if applicable.",
+              "nullable": true
+            },
+            "totalAmount": {
+              "type": "number",
+              "description": "The total amount paid.",
+              "format": "double"
+            },
+            "transactionsCount": {
+              "type": "integer",
+              "description": "The total number of transactions made.",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoLoanSource": {
+          "type": "object",
+          "properties": {
+            "sourceID": {
+              "type": "string",
+              "description": "Source identifier for the loan.",
+              "nullable": true
+            },
+            "lenderName": {
+              "type": "string",
+              "description": "Name of the lender.",
+              "nullable": true
+            },
+            "numOfOrigination": {
+              "type": "integer",
+              "description": "Number of origination transactions.",
+              "format": "int32"
+            },
+            "numOfPay": {
+              "type": "integer",
+              "description": "Number of payments made.",
+              "format": "int32"
+            },
+            "frequency": {
+              "type": "string",
+              "description": "Frequency of the loan payments.",
+              "nullable": true
+            },
+            "amountObserved": {
+              "type": "number",
+              "description": "Amount observed for the loan.",
+              "format": "double"
+            },
+            "monthlyPayment": {
+              "type": "number",
+              "description": "Monthly payment for the loan.",
+              "format": "double"
+            },
+            "interestRate": {
+              "type": "number",
+              "description": "Interest rate for the loan.",
+              "format": "double",
+              "nullable": true
+            },
+            "schedule": {
+              "type": "string",
+              "description": "Schedule for the loan payments.",
+              "nullable": true
+            },
+            "latestTransaction": {
+              "type": "string",
+              "description": "Latest transaction for the loan.",
+              "nullable": true
+            },
+            "loanType": {
+              "type": "string",
+              "description": "Type of the loan.",
+              "nullable": true
+            },
+            "debitType": {
+              "type": "string",
+              "description": "Type of debit associated with the loan.",
+              "nullable": true
+            },
+            "errorCode": {
+              "type": "integer",
+              "description": "Error code if applicable.",
+              "format": "int32"
+            },
+            "errorMessage": {
+              "type": "string",
+              "description": "Error message if applicable.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoMonthlyIncome": {
+          "type": "object",
+          "properties": {
+            "activeMonthlyIncome": {
+              "type": "number",
+              "description": "Active monthly income.",
+              "format": "double"
+            },
+            "recurringMonthlyIncome": {
+              "type": "number",
+              "description": "Recurring monthly income.",
+              "format": "double"
+            },
+            "stableMonthlyIncome": {
+              "type": "number",
+              "description": "Stable monthly income.",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoOverdraftIncident": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "description": "Date when the transaction occurred.",
+              "nullable": true
+            },
+            "amount": {
+              "type": "number",
+              "description": "Amount of money involved in the transaction.",
+              "format": "double",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "description": "Description providing additional details about the transaction.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoPredictedPaydays": {
+          "type": "object",
+          "properties": {
+            "incomeType": {
+              "type": "string",
+              "description": "Income Type",
+              "nullable": true
+            },
+            "incomeSource": {
+              "type": "string",
+              "description": "Income Sources",
+              "nullable": true
+            },
+            "incomePredictedPaydays": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IncomesDataAnalysisAccountInfoPredictedPaydaysItem"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoPredictedPaydaysItem": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "description": "Payday Date",
+              "nullable": true
+            },
+            "day": {
+              "type": "string",
+              "description": "Day of a month",
+              "nullable": true
+            },
+            "amount": {
+              "type": "number",
+              "description": "Pay Amount",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoScope": {
+          "type": "object",
+          "properties": {
+            "avgMonthlyBalance": {
+              "type": "number",
+              "description": "Average Balance",
+              "format": "double"
+            },
+            "overdraftIncidents": {
+              "type": "integer",
+              "description": "Over Draft Incidents",
+              "format": "int32"
+            },
+            "avgMonthlyIncome": {
+              "type": "number",
+              "description": "Average monthly income.",
+              "format": "double"
+            },
+            "numIncomeSources": {
+              "type": "integer",
+              "description": "Number of income sources.",
+              "format": "int32"
+            },
+            "numMonthsIncomeHistory": {
+              "type": "integer",
+              "description": "Number of months in income history.",
+              "format": "int32"
+            },
+            "amountPaidInLoans": {
+              "type": "number",
+              "description": "Total amount that has been paid.",
+              "format": "double"
+            },
+            "numLoans": {
+              "type": "integer",
+              "description": "Number of loans associated with the account.",
+              "format": "int32"
+            },
+            "cashflow": {
+              "type": "number",
+              "description": "The cash flow value associated with the account.",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisAccountInfoTransactionsRange": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "string",
+              "description": "The start date of the transaction range.",
+              "nullable": true
+            },
+            "end": {
+              "type": "string",
+              "description": "The end date of the transaction range.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisCustomerInfo": {
+          "type": "object",
+          "properties": {
+            "names": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of names.",
+              "nullable": true
+            },
+            "contact": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisCustomerInfoContact"
+            },
+            "recommendedBankAccount": {
+              "type": "string",
+              "description": "Recommended bank account.",
+              "nullable": true
+            },
+            "riskAnalysisCustomer": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisRiskAnalysis"
+            },
+            "assessmentReasonsCustomer": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of assessment reasons for the account.",
+              "nullable": true
+            },
+            "assessmentReasonsCustomerGood": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of reasons why the rating is good for the account.",
+              "nullable": true
+            },
+            "assessmentReasonsCustomerBad": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of reasons why an account has a bad rating.",
+              "nullable": true
+            },
+            "lendingGuideCustomer": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisLendingGuide"
+            },
+            "employerValidation": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisCustomerInfoEmployerValidation"
+            },
+            "features": {
+              "$ref": "#/components/schemas/IncomesDataAnalysisCustomerInfoFeatures"
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisCustomerInfoContact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "description": "Email Address.",
+              "nullable": true
+            },
+            "phone": {
+              "type": "string",
+              "description": "Phone number.",
+              "nullable": true
+            },
+            "address": {
+              "type": "string",
+              "description": "Address.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisCustomerInfoEmployerValidation": {
+          "type": "object",
+          "properties": {
+            "employerName": {
+              "type": "string",
+              "description": "Employer Name.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisCustomerInfoFeatures": {
+          "type": "object",
+          "properties": {
+            "activeMonthlyIncome": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "active_count_0": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "active_count_1": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "active_count_2": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "active_count_3": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "active_monthly_0": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "active_monthly_1": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "active_monthly_2": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "active_monthly_3": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "allTimeMonthlyIncome": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "averageMonthlyBalanceAll": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_peak_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_peak_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_peak_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_peak_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_prominence_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "avg_valley_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "cashflowAllTime": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "good_days_to_debit_by_peak_100": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_peak_250": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_peak_500": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_valley_100": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_valley_250": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "good_days_to_debit_by_valley_500": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "incomeHistoryAllTime": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "incomeSourceAllTime": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_Benefit": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_Deposit": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_Payroll": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_Transfer": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "income_count1_gig": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "inflowExcludingLoans": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "loanIdentifiedAllTime": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "loanPmtAllTime": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_balance_differences": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_peak_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_peak_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_peak_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_peak_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_valley_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_valley_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "max_valley_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_prominence_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_prominence_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_peak_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_gtd_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_gtd_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_gtd_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_prominence_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_prominence_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "min_valley_prominence_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "n_peak_100": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_peak_250": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_peak_500": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_valley_100": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_valley_250": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "n_valley_500": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "net_cashflow_from_start_to_end": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "num_of_originations": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "num_of_pays": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "odAll": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "peak_good_days_to_debit_trans_history_ratio100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_good_days_to_debit_trans_history_ratio250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_good_days_to_debit_trans_history_ratio500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_most_recent_gtd_length_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_most_recent_gtd_length_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_most_recent_gtd_length_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_trans_history_ratio_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_trans_history_ratio_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "peak_trans_history_ratio_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "recurringMonthlyIncome": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "recurring_count_1": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "recurring_count_2": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "recurring_count_3": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "recurring_monthly_1": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "recurring_monthly_2": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "recurring_monthly_3": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "totalCredits": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "totalDebits": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_monthly1": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_Benefit": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_Deposit": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_Payroll": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_Transfer": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "total_type_monthly1_gig": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "transation_period_lengths": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "valley_good_days_to_debit_trans_history_ratio100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_good_days_to_debit_trans_history_ratio250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_good_days_to_debit_trans_history_ratio500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_most_recent_gtd_length_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_most_recent_gtd_length_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_most_recent_gtd_length_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_trans_history_ratio_100": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_trans_history_ratio_250": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "valley_trans_history_ratio_500": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisLendingGuide": {
+          "type": "object",
+          "properties": {
+            "customerIncomeType": {
+              "type": "string",
+              "description": "<b>Customer income type:</b>\r\n<ul>\r\n  <li>Payroll</li>\r\n  <li>Benefit</li>\r\n  <li>Deposit</li>\r\n  <li>Transfer</li>\r\n  <li>Irregular(Customer income is steady but is not deposited in the account in regular intervals. E.g.: gig income)</li>\r\n  <li>None(No active income was detected within the bank account)</li>\r\n</ul>",
+              "nullable": true
+            },
+            "debitDate": {
+              "type": "string",
+              "description": "Recommended day to debit the account.",
+              "nullable": true
+            },
+            "debitFrequency": {
+              "type": "string",
+              "description": "<b>Detected debit frequency:</b>\r\n<ul>\r\n  <li>Weekly (W)</li>\r\n  <li>Bi-weekly (B)</li>\r\n  <li>Semi-monthly (S)</li>\r\n  <li>Monthly (M)</li>\r\n</ul>",
+              "nullable": true
+            },
+            "maxDebitAmount": {
+              "type": "number",
+              "description": "Suggested maximum debit amount towards a payment per month.",
+              "format": "double"
+            },
+            "maxLoanAmount": {
+              "type": "number",
+              "description": "Suggested maximum loan amount.",
+              "format": "double"
+            },
+            "minDebitAmount": {
+              "type": "number",
+              "description": "Suggested minimum debit amount towards a payment per month.",
+              "format": "double"
+            },
+            "minLoanAmount": {
+              "type": "number",
+              "description": "Suggested minimum loan amount.",
+              "format": "double"
+            },
+            "nextPaymentOnHoliday": {
+              "description": "Is there a payday on a holiday weekend?",
+              "nullable": true
+            },
+            "paymentNearHoliday": {
+              "type": "string",
+              "description": "<b>Predicted payroll deposit day upon a holiday weekend:</b>\r\n<ul>\r\n  <li>Before (B) before the holiday weekend</li>\r\n  <li>After (A) the holiday weekend</li>\r\n  <li>None (No Value) if not applicable</li>\r\n</ul>",
+              "nullable": true
+            },
+            "repeatOpportunity": {
+              "type": "string",
+              "description": "<b>This measure estimates the likelihood that the customer will return for repeat business:</b>\r\n<ul>\r\n  <li>High – High likelihood</li>\r\n  <li>Medium – Medium Likelihood</li>\r\n  <li>Low – Low likelihood</li>\r\n</ul>",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisMetadata": {
+          "type": "object",
+          "properties": {
+            "lastUpdated": {
+              "type": "string",
+              "description": "The date and time when the data was last updated.",
+              "nullable": true
+            },
+            "requestCode": {
+              "type": "string",
+              "description": "Unique request code for identifying the request.",
+              "nullable": true
+            },
+            "asOfDate": {
+              "type": "string",
+              "description": "The date representing the 'as of' reference point.",
+              "nullable": true
+            },
+            "snapshotDate": {
+              "type": "string",
+              "description": "The date representing the snapshot reference point.",
+              "nullable": true
+            },
+            "unitId": {
+              "type": "integer",
+              "description": "Unit ID",
+              "format": "int32"
+            },
+            "ibvProviderName": {
+              "type": "string",
+              "description": "IBV provider name.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisRiskAnalysis": {
+          "type": "object",
+          "properties": {
+            "riskBehavior": {
+              "type": "string",
+              "description": "<b>Risk behavior:</b>\r\n<ul>\r\n  <li>Yes</li>\r\n  <li>No</li>\r\n</ul>",
+              "nullable": true
+            },
+            "riskScore": {
+              "type": "number",
+              "description": "Risk score",
+              "format": "double",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncomesDataAnalysisTransaction": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Unique identifier of the transaction in the database.",
+              "format": "int32"
+            },
+            "date": {
+              "type": "string",
+              "description": "The date of the transaction.",
+              "nullable": true
+            },
+            "day": {
+              "type": "string",
+              "description": "The day of the week for the transaction.",
+              "nullable": true
+            },
+            "incomeType": {
+              "type": "string",
+              "description": "Type of income for the transaction.",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the transaction.",
+              "nullable": true
+            },
+            "depositType": {
+              "type": "string",
+              "description": "Type of deposit for the transaction.",
+              "nullable": true
+            },
+            "amount": {
+              "type": "number",
+              "description": "Amount of the transaction.",
+              "format": "double"
+            },
+            "sourceID": {
+              "type": "string",
+              "description": "Source identifier for the transaction.",
+              "nullable": true
+            },
+            "transactionType": {
+              "type": "string",
+              "description": "Type of the transaction (e.g., credit, debit).",
+              "nullable": true
+            },
+            "ibvCategory": {
+              "type": "string",
+              "description": "Category of the transaction in IBV.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "ProcResult": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "The current status of the product (e.g., active, inactive, etc.).",
+              "nullable": true
+            },
+            "statusDescription": {
+              "type": "string",
+              "description": "A description of the product's status, if applicable.",
+              "nullable": true
+            },
+            "productProcessingResult": {
+              "$ref": "#/components/schemas/IncomesDataAnalysis"
+            },
+            "message": {
+              "type": "string",
+              "description": "A message providing additional information about the product or its processing.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "ProcessTransactionsResponse": {
+          "type": "object",
+          "properties": {
+            "succeeded": {
+              "type": "boolean",
+              "description": "Operation execution status",
+              "example": false
+            },
+            "message": {
+              "type": "string",
+              "description": "Additional information about the operation.",
+              "nullable": true,
+              "example": "Error message."
+            },
+            "data": {
+              "description": "Additional information object.",
+              "nullable": true,
+              "example": null
+            },
+            "requestId": {
+              "type": "string",
+              "description": "Request Identifier of the Transaction",
+              "nullable": true
+            },
+            "processingResult": {
+              "$ref": "#/components/schemas/ProcResult"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Contains a list of products that are unavailable due to the end of the subscription.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "RequestCodeReport": {
+          "type": "object",
+          "properties": {
+            "requestCode": {
+              "type": "string",
+              "description": "Unique identifier for the request.",
+              "nullable": true
+            },
+            "customerName": {
+              "type": "string",
+              "description": "Name of the customer associated with the request.",
+              "nullable": true
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address of the customer.",
+              "nullable": true
+            },
+            "phone": {
+              "type": "string",
+              "description": "Phone number of the customer.",
+              "nullable": true
+            },
+            "entityName": {
+              "type": "string",
+              "description": "Name of the entity associated with the request.",
+              "nullable": true
+            },
+            "profileName": {
+              "type": "string",
+              "description": "Profile name of the customer or entity.",
+              "nullable": true
+            },
+            "accessInfo": {
+              "type": "string",
+              "description": "Additional access information related to the request.",
+              "nullable": true
+            },
+            "bankName": {
+              "type": "string",
+              "description": "Name of the bank associated with the request.",
+              "nullable": true
+            },
+            "status": {
+              "type": "string",
+              "description": "Current status of the request.",
+              "nullable": true
+            },
+            "planType": {
+              "type": "string",
+              "description": "Type of plan selected for the request.",
+              "nullable": true
+            },
+            "subscriptionStatus": {
+              "type": "string",
+              "description": "Current subscription status for the request.",
+              "nullable": true
+            },
+            "addedOn": {
+              "type": "string",
+              "description": "Timestamp indicating when the request was added.",
+              "nullable": true
+            },
+            "attemptedOn": {
+              "type": "string",
+              "description": "Timestamp indicating when the request was attempted.",
+              "nullable": true
+            },
+            "verifiedOn": {
+              "type": "string",
+              "description": "Timestamp indicating when the request was verified.",
+              "nullable": true
+            },
+            "rejectedOn": {
+              "type": "string",
+              "description": "Timestamp indicating when the request was rejected.",
+              "nullable": true
+            },
+            "unsubscribedOn": {
+              "type": "string",
+              "description": "Timestamp indicating when the request was unsubscribed.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "RequestIdVM": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "string",
+              "description": "User ID.",
+              "nullable": true
+            },
+            "unitId": {
+              "type": "integer",
+              "description": "Unit ID",
+              "format": "int32"
+            },
+            "unitName": {
+              "type": "string",
+              "description": "User name.",
+              "nullable": true
+            },
+            "requestId": {
+              "type": "string",
+              "description": "Request ID.",
+              "nullable": true
+            },
+            "status": {
+              "type": "integer",
+              "description": "Request status. ( Created = 0, Processing = 1, Completed = 2, Error = 3 )",
+              "format": "int32"
+            },
+            "rcStatus": {
+              "type": "string",
+              "description": "Request status with IBV provider.",
+              "nullable": true
+            },
+            "ibvStatus": {
+              "type": "string",
+              "description": "Client status with IBV provider.",
+              "nullable": true
+            },
+            "created": {
+              "type": "string",
+              "description": "Request creation date.",
+              "nullable": true
+            },
+            "updated": {
+              "type": "string",
+              "description": "Request update date.",
+              "nullable": true
+            },
+            "requestCode": {
+              "type": "string",
+              "description": "Request code from the IBV provider.",
+              "nullable": true
+            },
+            "customerName": {
+              "type": "string",
+              "description": "Customer's name.",
+              "nullable": true
+            },
+            "subscribedOn": {
+              "type": "string",
+              "description": "Subscription date.",
+              "nullable": true
+            },
+            "unsubscribed": {
+              "type": "string",
+              "description": "Unsubscription date.",
+              "nullable": true
+            },
+            "snapshotDate": {
+              "type": "string",
+              "description": "Snapshot date.",
+              "nullable": true
+            },
+            "lastUpdated": {
+              "type": "string",
+              "description": "Date of last update.",
+              "nullable": true
+            },
+            "lastViewed": {
+              "type": "string",
+              "description": "Date of last request for data.",
+              "nullable": true
+            },
+            "asOfDate": {
+              "type": "string",
+              "description": "Data as of date.",
+              "nullable": true
+            },
+            "provider": {
+              "$ref": "#/components/schemas/IdName"
+            },
+            "productId": {
+              "type": "integer",
+              "description": "Product Id.",
+              "format": "int32"
+            },
+            "additionalInfo": {
+              "$ref": "#/components/schemas/AUResponseVMAddInfo"
+            }
+          },
+          "additionalProperties": false
+        },
+        "RequestStatusResponse": {
+          "type": "object",
+          "properties": {
+            "RequestCode": {
+              "type": "string",
+              "description": "Unique code identifying the request.",
+              "nullable": true
+            },
+            "Status": {
+              "type": "string",
+              "description": "Current status of the request.",
+              "nullable": true
+            },
+            "RefreshStatus": {
+              "type": "string",
+              "description": "Status indicating if the request needs to be refreshed.",
+              "nullable": true
+            },
+            "FirstName": {
+              "type": "string",
+              "description": "First name associated with the request.",
+              "nullable": true
+            },
+            "LastName": {
+              "type": "string",
+              "description": "Last name associated with the request.",
+              "nullable": true
+            },
+            "Environment": {
+              "type": "string",
+              "description": "Environment in which the request was processed (e.g., Production, Sandbox).",
+              "nullable": true
+            },
+            "Mode": {
+              "type": "string",
+              "description": "Operational mode of the request (e.g., Live, Test).",
+              "nullable": true
+            },
+            "VerificationLink": {
+              "type": "string",
+              "description": "URL link for verification purposes.",
+              "nullable": true
+            },
+            "SelectedBank": {
+              "type": "string",
+              "description": "Name of the selected bank associated with the request.",
+              "nullable": true
+            },
+            "isAccountConnected": {
+              "type": "boolean",
+              "description": "Indicates whether the account is successfully connected."
+            },
+            "isLinkExpired": {
+              "type": "boolean",
+              "description": "Indicates whether the connection link has expired."
+            },
+            "LastAggregatedAt": {
+              "type": "string",
+              "description": "Timestamp of the last aggregation activity.",
+              "nullable": true
+            },
+            "connectionStatus": {
+              "type": "string",
+              "description": "Current connection status of the account.",
+              "nullable": true
+            },
+            "statusDetails": {
+              "type": "string",
+              "description": "Detailed information about the current status.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Response": {
+          "type": "object",
+          "properties": {
+            "succeeded": {
+              "type": "boolean",
+              "description": "Operation execution status",
+              "example": false
+            },
+            "message": {
+              "type": "string",
+              "description": "Additional information about the operation.",
+              "nullable": true,
+              "example": "Error message."
+            },
+            "data": {
+              "description": "Additional information object.",
+              "nullable": true,
+              "example": null
+            }
+          },
+          "additionalProperties": false
+        },
+        "TransactionAnalysisSummary": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "The identifier for the transaction category.",
+              "nullable": true
+            },
+            "total": {
+              "type": "integer",
+              "description": "The total number of transactions in the category.",
+              "format": "int32",
+              "nullable": true
+            },
+            "amount": {
+              "type": "string",
+              "description": "The total monetary amount associated with the category.",
+              "nullable": true
+            },
+            "recentTransactionAmount": {
+              "type": "string",
+              "description": "The amount of the most recent transaction in the category.",
+              "nullable": true
+            },
+            "recentTransactionCount": {
+              "type": "integer",
+              "description": "The count of recent transactions in the category.",
+              "format": "int32",
+              "nullable": true
+            },
+            "categoryName": {
+              "type": "string",
+              "description": "The display name of the transaction category.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "TransactionSummary": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Category of the transaction.",
+              "nullable": true
+            },
+            "created_at": {
+              "type": "string",
+              "description": "Date and time when the transaction was created (optional).",
+              "nullable": true
+            },
+            "date": {
+              "type": "string",
+              "description": "Date of the transaction.",
+              "nullable": true
+            },
+            "original_description": {
+              "type": "string",
+              "description": "Original description of the transaction.",
+              "nullable": true
+            },
+            "status": {
+              "type": "string",
+              "description": "Status of the transaction (optional).",
+              "nullable": true
+            },
+            "type": {
+              "type": "string",
+              "description": "Type of the transaction.",
+              "nullable": true
+            },
+            "top_level_category": {
+              "type": "string",
+              "description": "Top-level category of the transaction.",
+              "nullable": true
+            },
+            "account_guid": {
+              "type": "string",
+              "description": "Unique identifier for the account related to the transaction.",
+              "nullable": true
+            },
+            "amount": {
+              "type": "number",
+              "description": "Amount of the transaction.",
+              "format": "double",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the transaction.",
+              "nullable": true
+            },
+            "guid": {
+              "type": "string",
+              "description": "Unique identifier for the transaction.",
+              "nullable": true
+            },
+            "parentCategoryCode": {
+              "type": "string",
+              "description": "Parent category code of the transaction.",
+              "nullable": true
+            },
+            "categoryCode": {
+              "type": "string",
+              "description": "Category code of the transaction.",
+              "nullable": true
+            },
+            "account_id": {
+              "type": "string",
+              "description": "Unique identifier for the account associated with the transaction.",
+              "nullable": true
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for the transaction summary.",
+              "nullable": true
+            },
+            "user_id": {
+              "type": "string",
+              "description": "Unique identifier for the user associated with the transaction (optional).",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "securitySchemes": {
+        "BankuityAPIServiceSecurity": {
+          "type": "apiKey",
+          "description": "API key provided by Bankuity",
+          "name": "Authorization",
+          "in": "header"
+        }
+      }
+    },
+    "security": [
+      {
+        "BankuityAPIServiceSecurity": [ ]
+      }
+    ],
+    "tags": [
+      {
+        "name": "ApiIAChirp",
+        "description": "Incomes Analizer API methods for Chirp."
+      },
+      {
+        "name": "Auth",
+        "description": "Authorization and authentication methods."
+      },
+      {
+        "name": "Totality",
+        "description": "Contoller for Exteral Client like Totality"
+      }
+    ]
+  }
