@@ -1,5 +1,5 @@
 ---
-title: Authentication
+title: Generate Analysis Report
 ---
 
 The Bankuity Income Analysis service provides a RESTful interface for performing financial evaluations. The API goes beyond simple data retrieval to identify and verify income sources, evaluate stability, and derive real-time risk scores from bank statement data.
@@ -27,9 +27,21 @@ curl --ssl-no-revoke \
   -H "Authorization: {YOUR_API_KEY}" \
   -H "Content-Type: application/json"
 ```
+See the query parameters table below for more details.
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `requestCode` | `string` | Your provider-specific identifier for this specific client request. |
+| `ibvProviderName` | `string` | The name of the integrated IBV provider from which data should be sourced. |
 
 The endpoint checks the `requestCode` with the IBV provider. If new data is available, a new snapshot is analyzed, otherwise, stored results are returned.
 
-## Response
+### Response
 
+Upon a successful 200 OK response, you will receive a `GetProcessingResultsResponse` object.
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `requestId` | `string` | This is a unique, Bankuity-generated identifier for this specific analysis instance. |
+
+You must store the `requestId` to access the analysis results later via the `/v2/analysis/income/result` endpoint without re-triggering provider data fetching. The response includes detailed account info, active monthly income, risk scores, and suggested loan amounts.

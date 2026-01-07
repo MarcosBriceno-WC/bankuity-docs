@@ -1,8 +1,5 @@
-#navbar {
-  background: #1B1D3D;
-  color: white;
-}
 
-#navbar a {
-  color: white;
+
+.dark body {
+  background-color: #1B1D3D !important; /* Replace with your preferred hex code */
 }

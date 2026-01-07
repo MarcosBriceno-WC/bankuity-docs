@@ -22,36 +22,82 @@
         "icon": "book",
         "groups": [
           {
+            "group": "Introduction",
+            "pages": [
+              "guides/overview"
+            ]
+          },
+          {
             "group": "Get Started",
             "pages": [
-              "guides/overview",
-              "guides/authentication"
-             
+              "guides/generate-analysis",
+              "guides/retrieve-results"
             ]
           }    
         ]
       },
       {
-        "tab": "API reference",
-        "icon": "code",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "openapi": "openapi.json"
-          }
-        ]
-      }
+  "tab": "API reference",
+  "icon": "code",
+  "groups": [
+    {
+      "group": "Introduction",
+      "pages": [
+        "api-reference/introduction",
+        "api-reference/authentication",
+        "api-reference/response-codes"
+      ]
+    },
+    {
+      "group": "Endpoints",
+      "pages": [
+        {
+          "group": "Analysis Services",
+          "openapi": "openapi.json",
+          "pages": [
+            "POST /v2/analysis/insights",
+            "POST /v2/analysis/bankinfo/check",
+            "GET /v2/analysis/income",
+            "GET /v2/analysis/income/customer"
+          ]
+        },
+        {
+          "group": "Transaction Intelligence",
+          "openapi": "openapi.json",
+          "pages": [
+            "GET /v2/analysis/income/result",
+            "POST /v2/analysis/income/search",
+            "POST /v2/analysis/income/chirpreports",
+            "POST /api/GetTransactions",
+            "POST /api/GetTransactionsForRequestCode"
+          ]
+        },
+        {
+          "group": "Connection Management",
+          "openapi": "openapi.json",
+          "pages": [
+            "GET /v2/connections/status",
+            "POST /v2/connections/refresh"
+          ]
+        },
+        {
+          "group": "System & Auth",
+          "openapi": "openapi.json",
+          "pages": [
+            "POST /Auth/GetJWTToken",
+            "POST /api/GetUnitConfigurations",
+            "GET /api/Ping"
+          ]
+        }
+      ]
+    }
+  ]
+}
     ]
   },
   "logo": {
-    "light": "/logo/bankuity-logo.svg",
-    "dark": "/logo/bankuity-logo.svg"
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
   },
   "navbar": {
   },

@@ -1,3 +1,39 @@
 ---
-title: 'Bankuity API Reference'
+title: API Overview
 ---
+
+The Bankuity API platform provides a comprehensive suite of financial analysis tools through a RESTful interface. Our services enable developers to access income verification, risk assessment, and lending intelligence powered by advanced machine learning models.
+
+By leveraging bank statement data, Bankuity transforms raw transaction history into actionable insights, allowing for automated financial decision-making with high confidence.
+
+## Core Concepts
+
+Before integrating with specific endpoints, we recommend reviewing our fundamental patterns. Understanding these core concepts will ensure a smooth implementation of the Bankuity service.
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="lock" href="/api-reference/authentication">
+    Learn how to use your Subscription Key and API Key for every request.
+  </Card>
+  <Card title="HTTP Response Codes" icon="code" href="/api-reference/response-codes">
+    Understand our standard success and error response formats.
+  </Card>
+</CardGroup>
+
+## Available Services
+
+Our API resources are organized into four primary pillars to support the end-to-end financial analysis workflow.
+
+<CardGroup cols={2}>
+  <Card title="Analysis Services" icon="chart-network" href="/api-reference/apifeatures/get-post-on-boarding-insights">
+    Access core intelligence engines including Income Analysis, Bank Verification, and Post-Onboarding Insights.
+  </Card>
+  <Card title="Transaction Intelligence" icon="magnifying-glass-dollar" href="/api-reference/apitransdetails/get-processing-results">
+    Retrieve granular processing results, search historical request IDs, and access detailed transaction history.
+  </Card>
+  <Card title="Connection Management" icon="link-slash" href="/api-reference/apiibvservice/check-connect">
+    Monitor bridge connectivity with IBV providers and manually trigger data refreshes for the latest snapshots.
+  </Card>
+  <Card title="System & Auth" icon="gears" href="/api-reference/auth/get-token">
+    Manage secure JWT tokens, verify API health via Ping, and retrieve organizational unit configurations.
+  </Card>
+</CardGroup>
