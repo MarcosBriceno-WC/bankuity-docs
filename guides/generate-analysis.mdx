@@ -15,9 +15,9 @@ Before getting started, ensure you have the following:
 
 ## Execute the Analysis Request
 
-To initiate and retrieve an analysis you need to send a **GET** request to the `/v2/analysis/income` endpoint, sending the `requestCode` and `ProviderName` of your IBV provider as query parameters.
+To initiate and retrieve an analysis you need to send a **GET** request to the [`/v2/analysis/income`](/api-reference/apiiachirp/request-income-analysis) endpoint, sending the `requestCode` and `ProviderName` of your IBV provider as query parameters.
 
-See an example request in the code block below:
+The code block below shows an example request:
 
 ```cURL
 curl --ssl-no-revoke \
@@ -27,7 +27,7 @@ curl --ssl-no-revoke \
   -H "Authorization: {YOUR_API_KEY}" \
   -H "Content-Type: application/json"
 ```
-See the query parameters table below for more details.
+The following table describe the query parameters used in the request:
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -40,8 +40,6 @@ The endpoint checks the `requestCode` with the IBV provider. If new data is avai
 
 Upon a successful 200 OK response, you will receive a `GetProcessingResultsResponse` object.
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| `requestId` | `string` | This is a unique, Bankuity-generated identifier for this specific analysis instance. |
+- `requestId`: This is a unique, Bankuity-generated identifier for this specific analysis instance. 
 
-You must store the `requestId` to access the analysis results later via the `/v2/analysis/income/result` endpoint without re-triggering provider data fetching. The response includes detailed account info, active monthly income, risk scores, and suggested loan amounts.
+You must store the `requestId` to access the analysis results later via the [`/v2/analysis/income/result`](/api-reference/totality/get-analyzing-result-for-customer) endpoint without re-triggering provider data fetching. The response includes detailed account info, active monthly income, risk scores, and suggested loan amounts.

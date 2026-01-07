@@ -13,9 +13,7 @@
       {
         "tab": "Home",
         "icon": "house",
-        "pages": [
-              "index"
-            ] 
+        "pages": ["index"]
       },
       {
         "tab": "Guides",
@@ -23,83 +21,82 @@
         "groups": [
           {
             "group": "Introduction",
-            "pages": [
-              "guides/overview"
-            ]
+            "pages": ["guides/overview"]
           },
           {
             "group": "Get Started",
-            "pages": [
-              "guides/generate-analysis",
-              "guides/retrieve-results"
-            ]
-          }    
+            "pages": ["guides/generate-analysis", "guides/retrieve-results"]
+          }
         ]
       },
       {
-  "tab": "API reference",
-  "icon": "code",
-  "groups": [
-    {
-      "group": "Introduction",
-      "pages": [
-        "api-reference/introduction",
-        "api-reference/authentication",
-        "api-reference/response-codes"
-      ]
-    },
-    {
-      "group": "Endpoints",
-      "pages": [
-        {
-          "group": "Analysis Services",
-          "openapi": "openapi.json",
-          "pages": [
-            "POST /v2/analysis/insights",
-            "POST /v2/analysis/bankinfo/check",
-            "GET /v2/analysis/income",
-            "GET /v2/analysis/income/customer"
-          ]
-        },
-        {
-          "group": "Transaction Intelligence",
-          "openapi": "openapi.json",
-          "pages": [
-            "GET /v2/analysis/income/result",
-            "POST /v2/analysis/income/search",
-            "POST /v2/analysis/income/chirpreports",
-            "POST /api/GetTransactions",
-            "POST /api/GetTransactionsForRequestCode"
-          ]
-        },
-        {
-          "group": "Connection Management",
-          "openapi": "openapi.json",
-          "pages": [
-            "GET /v2/connections/status",
-            "POST /v2/connections/refresh"
-          ]
-        },
-        {
-          "group": "System & Auth",
-          "openapi": "openapi.json",
-          "pages": [
-            "POST /Auth/GetJWTToken",
-            "POST /api/GetUnitConfigurations",
-            "GET /api/Ping"
-          ]
-        }
-      ]
-    }
-  ]
-}
+        "tab": "API Reference",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "api-reference/introduction",
+              "api-reference/authentication",
+              "api-reference/response-codes"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              {
+                "group": "Authentication",
+                "openapi": "openapi.json",
+                "pages": [
+                  "POST /Auth/GetJWTToken",
+                  "POST /api/GetUnitConfigurations",
+                  "GET /api/Ping"
+                ]
+              },
+              {
+                "group": "Analysis Services",
+                "openapi": "openapi.json",
+                "pages": [
+                  "POST /v2/analysis/insights",
+                  "POST /v2/analysis/bankinfo/check",
+                  "GET /v2/analysis/income",
+                  "GET /v2/analysis/income/customer"
+                ]
+              },
+              {
+                "group": "Transaction Intelligence",
+                "openapi": "openapi.json",
+                "pages": [
+                  "GET /v2/analysis/income/result",
+                  "POST /v2/analysis/income/search",
+                  "POST /v2/analysis/income/chirpreports",
+                  "POST /api/GetTransactions",
+                  "POST /api/GetTransactionsForRequestCode"
+                ]
+              },
+              {
+                "group": "Connection Management",
+                "openapi": "openapi.json",
+                "pages": [
+                  "GET /v2/connections/status",
+                  "POST /v2/connections/refresh"
+                ]
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
+    "light": "/logo/dark.svg",
     "dark": "/logo/dark.svg"
   },
-  "navbar": {
+  "navbar": {},
+  "background": {
+    "color": {
+      "dark": "#11132D"
+    }
   },
   "contextual": {
     "options": [
@@ -112,12 +109,5 @@
       "cursor",
       "vscode"
     ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
   }
 }

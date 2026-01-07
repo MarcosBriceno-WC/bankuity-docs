@@ -1,44 +1,67 @@
 ---
-title: "Bankuity Docs"
-description: "The official documentation for Bankuity."
-mode: "custom" # Use the custom layout for a full-page design
+title: Welcome to Bankuity
+description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+mode: "custom"
 ---
 
-import { PageWrapper, HomeCard } from "/snippets/home.jsx";
+import { HomeBg } from "/snippets/homebg.jsx"
 
-<div className="w-full flex justify-center">
-      <div className="max-w-[1376px] w-[800px] flex flex-col items-center text-center px-4 gap-[31px] mt-[91px] mb-[54px] dark:background-[#1B1D3D]">
-        {/* Logo */}
-        <img noZoom src="/logo/light.svg" alt="Bankuity Docs logo" className=" dark:hidden" />
-        <img noZoom src="/logo/dark.svg" alt="Bankuity Docs" className=" hidden dark:block" />
+<HomeBg/>
 
-        {/* Subtitle */}
-        <p className="font-[Hanken_Grotesk] text-xl text-dark-grey dark:text-white max-w-[804px] leading-[41px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-        </p>
-      </div>
+<div className="overflow-hidden bg-[#11132D] px-6 pt-14 lg:px-8">
+  
+  {/* Hero Section */}
+  <div className="mx-auto max-w-2xl py-24 text-center">
+    <div className="flex justify-center mb-8">
+      <img noZoom src="/logo/dark.svg" alt="Bankuity Docs logo" />
+     </div> 
+    <p className="mt-6 text-lg leading-8 text-gray-400 max-w-xl mx-auto">
+      Dive into our docs and learn how to leverage financial analysis, income verification, and risk assessment through the Bankuity API.
+    </p>
+  </div>
+
+  {/* Cards Grid */}
+  <div className="mx-auto max-w-7xl pb-24">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      
+      {/* Card 1: What is Bankuity? */}
+      <a href="/introduction" className="group rounded-2xl border border-white/10 bg-[#111224] overflow-hidden hover:border-cyan-500/50 transition-all">
+        <div className="bg-[#111224] relative flex items-center justify-center">
+          <img src="/logo/home-1.svg" />
+        </div>
+        <div className="p-6">
+          <h3 className="text-lg font-semibold text-white">What is Bankuity?</h3>
+          <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+            Discover how our behavioral analytics and transaction enrichment provide deep insights into financial stability.
+          </p>
+        </div>
+      </a>
+
+      {/* Card 2: Get Started */}
+      <a href="/quickstart" className="group rounded-2xl border border-white/10 bg-[#111224] overflow-hidden hover:border-cyan-500/50 transition-all">
+        <div className="bg-[#111224] relative flex items-center justify-center">
+          <img src="/logo/home-2.svg" />
+        </div>
+        <div className="p-6">
+          <h3 className="text-lg font-semibold text-white">Get Started</h3>
+          <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+            Learn how to authenticate into our API and perform your first analysis request.
+          </p>
+        </div>
+      </a>
+
+      {/* Card 3: API Reference */}
+      <a href="/api-reference" className="group rounded-2xl border border-white/10 bg-[#111224] overflow-hidden hover:border-cyan-500/50 transition-all">
+        <div className="bg-[#111224] relative flex items-center justify-center">
+          <img src="/logo/home-3.svg" />
+        </div>
+        <div className="p-6">
+          <h3 className="text-lg font-semibold text-white">API Reference</h3>
+          <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+            Explore endpoints for income analysis, bank account verification, and automated lending recommendations.
+          </p>
+        </div>
+      </a>
     </div>
-
-<div className="w-full flex justify-center px-4">
-      <div className="w-full max-w-[1376px]">
-<Columns cols={2}>
-    <Card
-  title="Guides"
-  icon="book"
-  href="/docs/guides/main-flow/create-products"
->
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-</Card>
-
-  <Card
-  title="API Reference"
-  icon="code"
-  href="/api-reference/introduction"
->
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-
-</Card>
-
-</Columns>
-      </div>
-    </div>
+  </div>
+</div>

@@ -2,25 +2,50 @@
 title: Overview
 ---
 
-Welcome to the Bankuity API integration guide. This documentation is tailored for server-to-server integration, where your backend system interacts directly with Bankuity's services.
+Bankuity is a financial intelligence platform designed to transform raw consumer bank data into actionable insights that drive profitability and smarter decision-making. At its core, Bankuity leverages proprietary Advanced Banking Verification (ABV™) technology to go beyond the static snapshots provided by traditional Instant Bank Verification (IBV).
 
-## Your Path to Integration
+By decoding transaction patterns in real-time, the platform empowers lenders, landlords, and financial institutions to mitigate risk while identifying new growth opportunities in underserved markets, such as the gig economy.
 
-We recommend following these steps for a smooth integration experience:
-
-1.  **Start with the Guides** to understand our authentication methods and best practices. This is the essential first step.
-2.  **Explore the API Reference** to find the specific endpoints you need for your application.
+Key capabilities of Bankuity include:
 
 <Columns cols={2}>
+<Card title="Income Analysis & Verification" icon="search">
+Uses machine learning to identify and verify varied income sources, assess stability, and predict future cash flow.
+</Card>
 
-  <Card title="Get Started" href="/guides/get-started" icon="rocket">
+<Card title="Risk Assessment" icon="chart-area">
+Delivers deep behavioral analytics and predictive modeling to evaluate repayment probability beyond traditional credit scores.
+</Card>
+
+<Card title="Lending Intelligence" icon="brain">
+Recommends optimal loan amounts, terms, and personalized debit schedules aligned to a customer's specific payday patterns.
+</Card>
+
+<Card title="Lifecycle Management" icon="user">
+Provides insights across the entire customer journey from initial acquisition and underwriting to retention and collections optimization.
+</Card>
+</Columns>
+
+## Quickstart
+
+To get started quickly with Bankuity, follow the steps below:
+
+1. Start with the authentication process and test your connection to the API. See [Authentication](/api-reference/authentication) for more details on how to do so.
+2. Perform your first analysis request and retrieve the results. See [Generate Analysis Report](/guides/generate-analysis) for more details on how to do so.
+3. Explore the [API Reference](/api-reference/introduction) to find the details of specific endpoints you need.
+
+<Columns cols={3}>
+  <Card title="1. Authentication" href="/api-reference/authentication" icon="key">
+  Learn how to authenticate and test your connection to the API.
+  </Card>     
+
+  <Card title="2. Get Started" href="/guides/generate-analysis" icon="rocket">
   This section covers how to perform your fist analysis request and retrieve the results.
   </Card>
-  
-  <Card title="API Reference" href="/dev-tools/overview/" icon="code">
+
+  <Card title="3. API Reference" href="/api-reference/introduction" icon="code">
   Explore the available endpoints detailing the required parameters and request/response examples.
   </Card>
-
 </Columns>
 
 ## Getting Help
